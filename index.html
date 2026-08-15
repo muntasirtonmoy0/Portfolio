@@ -47,6 +47,52 @@
             pointer-events: none;
         }
 
+        /* Entry Screen */
+        #entry-screen {
+            position: fixed;
+            inset: 0;
+            background: var(--bg-color);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1s ease, visibility 1s ease;
+            text-align: center;
+            padding: 20px;
+        }
+
+        .entry-quote {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
+            color: #d1d5db;
+            text-transform: uppercase;
+            margin-bottom: 25px;
+            text-shadow: 0 0 15px rgba(255, 255, 255, 0.2);
+            max-width: 600px;
+            line-height: 1.6;
+        }
+
+        .click-btn {
+            padding: 12px 32px;
+            border-radius: 30px;
+            border: 1px solid var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            font-size: 0.95rem;
+            cursor: pointer;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            box-shadow: 0 0 15px var(--primary-glow);
+        }
+
+        .click-btn:hover {
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 30px var(--primary-glow);
+            transform: scale(1.05);
+        }
+
         /* White Interactive Cat */
         #cat-companion {
             position: fixed;
@@ -114,37 +160,31 @@
             animation: tailWag 1.5s ease-in-out infinite alternate;
         }
 
-        @keyframes catBreathe {
-            0% { transform: scale(1); }
-            100% { transform: scale(1.06); }
-        }
-
-        @keyframes tailWag {
-            0% { transform: rotate(-20deg); }
-            100% { transform: rotate(25deg); }
-        }
+        @keyframes catBreathe { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
+        @keyframes tailWag { 0% { transform: rotate(-20deg); } 100% { transform: rotate(25deg); } }
 
         /* Navigation Bar */
         .navbar {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            padding: 20px;
+            gap: 15px;
+            padding: 18px;
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(5, 5, 5, 0.7);
+            background: rgba(5, 5, 5, 0.75);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--card-border);
+            flex-wrap: wrap;
         }
 
         .nav-link {
             color: var(--text-sub);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 1px;
-            padding: 8px 16px;
+            padding: 7px 15px;
             border-radius: 20px;
             transition: 0.3s;
             border: 1px solid transparent;
@@ -156,7 +196,6 @@
             background: rgba(255, 255, 255, 0.05);
         }
 
-        /* Container */
         .container {
             max-width: 850px;
             margin: 0 auto;
@@ -352,7 +391,6 @@
             font-size: 0.85rem;
         }
 
-        /* Audio Pill */
         .audio-pill {
             position: fixed;
             bottom: 25px;
@@ -376,6 +414,12 @@
 
     <canvas id="canvas"></canvas>
 
+    <!-- Entry Portal Overlay -->
+    <div id="entry-screen">
+        <div class="entry-quote">“MORTALS FADE, BUT THEIR DREAMS NEVER DIE.”</div>
+        <button class="click-btn" onclick="enterSite()">CLICK TO ENTER</button>
+    </div>
+
     <!-- White Interactive Cat Companion -->
     <div id="cat-companion">
         <div class="cat-ear left"></div>
@@ -393,6 +437,7 @@
         <a href="index.html" class="nav-link active">Home</a>
         <a href="projects.html" class="nav-link">Projects</a>
         <a href="story.html" class="nav-link">Story & Life</a>
+        <a href="education.html" class="nav-link">Education & Timeline</a>
     </nav>
 
     <!-- Background Music -->
@@ -404,7 +449,7 @@
 
     <div class="container">
 
-        <!-- Profile Bio Header -->
+        <!-- Top Bio Profile -->
         <div class="profile-card">
             <div class="avatar">
                 <img src="avatar_mt.png" alt="Muntasir Tonmoy">
@@ -461,7 +506,7 @@
         <div class="section-title"><i class="fa-solid fa-rocket"></i> FEATURED PROJECTS</div>
         <a href="projects.html" class="card interactive">
             <div class="card-header">
-                <div class="card-title"><i class="fa-solid fa-cubes"></i> View All Projects & Live Demos</div>
+                <div class="card-title"><i class="fa-solid fa-cubes"></i> View All Projects & Demos</div>
                 <span class="card-tag">EXPLORE <i class="fa-solid fa-arrow-right"></i></span>
             </div>
             <div class="card-sub">
@@ -473,30 +518,36 @@
         <div class="section-title"><i class="fa-solid fa-book-open"></i> THE STORY & THE JOURNEY</div>
         <a href="story.html" class="card interactive">
             <div class="card-header">
-                <div class="card-title"><i class="fa-solid fa-compass"></i> Read My Story, Spark & Reality</div>
+                <div class="card-title"><i class="fa-solid fa-compass"></i> Read My Story & Reflections</div>
                 <span class="card-tag">READ <i class="fa-solid fa-arrow-right"></i></span>
             </div>
             <div class="card-sub">
-                "I am an introvert. I don't talk much to anyone... A world built of logic, code, and quiet thoughts." Click to read the full journey from 2021 to present.
+                "I am an introvert. I don't talk much to anyone... A world built of logic, code, and quiet thoughts." Read the full story and reflections.
+            </div>
+        </a>
+
+        <!-- Multi-page Link: Education & Timeline -->
+        <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> EDUCATION & TIMELINE</div>
+        <a href="education.html" class="card interactive">
+            <div class="card-header">
+                <div class="card-title"><i class="fa-solid fa-timeline"></i> Educational Journey & Milestones</div>
+                <span class="card-tag">VIEW <i class="fa-solid fa-arrow-right"></i></span>
+            </div>
+            <div class="card-sub">
+                Timeline from 2021 self-taught beginnings, shipping practical projects, to current Class 10 (Science) preparations and future software engineer goals.
             </div>
         </a>
 
     </div>
 
-    <!-- Script for Particle Engine & Interactive White Cat -->
     <script>
-        // Particle Background
+        // Particles
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
         window.addEventListener('resize', resize);
         resize();
-
         class Particle {
             constructor() {
                 this.x = Math.random() * canvas.width;
@@ -507,21 +558,16 @@
                 this.opacity = Math.random() * 0.4 + 0.1;
             }
             update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
+                this.x += this.speedX; this.y += this.speedY;
                 if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
                 if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
             }
             draw() {
                 ctx.fillStyle = `rgba(180, 180, 180, ${this.opacity})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
             }
         }
-
         for (let i = 0; i < 60; i++) particles.push(new Particle());
-
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             particles.forEach(p => { p.update(); p.draw(); });
@@ -529,44 +575,37 @@
         }
         animate();
 
-        // Interactive White Cat Follower (Cursor & Touch/Mobile)
+        // White Cat Follower
         const cat = document.getElementById('cat-companion');
-        let mouseX = window.innerWidth / 2;
-        let mouseY = window.innerHeight / 2;
-        let catX = mouseX;
-        let catY = mouseY;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX;
-            mouseY = e.clientY;
-        });
-
-        window.addEventListener('touchmove', (e) => {
-            if (e.touches.length > 0) {
-                mouseX = e.touches[0].clientX;
-                mouseY = e.touches[0].clientY;
-            }
-        }, { passive: true });
-
-        window.addEventListener('touchstart', (e) => {
-            if (e.touches.length > 0) {
-                mouseX = e.touches[0].clientX;
-                mouseY = e.touches[0].clientY;
-            }
-        }, { passive: true });
-
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let catX = mouseX, catY = mouseY;
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        window.addEventListener('touchmove', (e) => { if (e.touches.length > 0) { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; } }, { passive: true });
+        window.addEventListener('touchstart', (e) => { if (e.touches.length > 0) { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; } }, { passive: true });
         function moveCat() {
-            catX += (mouseX - catX) * 0.08;
-            catY += (mouseY - catY) * 0.08;
-            cat.style.left = catX + 'px';
-            cat.style.top = catY + 'px';
+            catX += (mouseX - catX) * 0.08; catY += (mouseY - catY) * 0.08;
+            cat.style.left = catX + 'px'; cat.style.top = catY + 'px';
             requestAnimationFrame(moveCat);
         }
         moveCat();
 
-        // Audio controls
+        // Audio & Entry Portal
         const music = document.getElementById('bg-music');
         let isPlaying = false;
+
+        function enterSite() {
+            document.getElementById('entry-screen').style.opacity = '0';
+            setTimeout(() => {
+                document.getElementById('entry-screen').style.display = 'none';
+            }, 1000);
+            
+            music.play().then(() => {
+                isPlaying = true;
+                document.getElementById('audio-icon').className = "fa-solid fa-compact-disc fa-spin";
+                document.getElementById('audio-status').innerText = "MUSIC: ON";
+            }).catch(e => console.log(e));
+        }
+
         function toggleAudio() {
             if (isPlaying) {
                 music.pause();
