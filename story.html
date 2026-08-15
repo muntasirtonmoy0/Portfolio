@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>The Story & Journey — Muntasir Shahriar</title>
+    <title>The Story & Life — Muntasir Shahriar</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -120,23 +120,24 @@
         .navbar {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            padding: 20px;
+            gap: 15px;
+            padding: 18px;
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(5, 5, 5, 0.7);
+            background: rgba(5, 5, 5, 0.75);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--card-border);
+            flex-wrap: wrap;
         }
 
         .nav-link {
             color: var(--text-sub);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 1px;
-            padding: 8px 16px;
+            padding: 7px 15px;
             border-radius: 20px;
             transition: 0.3s;
             border: 1px solid transparent;
@@ -204,50 +205,6 @@
             padding-left: 15px;
             margin: 15px 0;
         }
-
-        /* Timeline */
-        .timeline {
-            position: relative;
-            padding-left: 20px;
-            border-left: 2px solid var(--card-border);
-            margin-top: 25px;
-        }
-
-        .timeline-item {
-            position: relative;
-            margin-bottom: 25px;
-            padding-left: 15px;
-        }
-
-        .timeline-item::before {
-            content: '';
-            position: absolute;
-            left: -27px;
-            top: 4px;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: var(--primary);
-            box-shadow: 0 0 10px rgba(255,255,255,0.2);
-        }
-
-        .timeline-date {
-            font-size: 0.8rem;
-            color: var(--accent);
-            font-weight: 600;
-        }
-
-        .timeline-head {
-            font-size: 1.05rem;
-            color: #fff;
-            margin: 2px 0 6px 0;
-        }
-
-        .timeline-desc {
-            font-size: 0.9rem;
-            color: var(--text-sub);
-            line-height: 1.6;
-        }
     </style>
 </head>
 <body>
@@ -271,6 +228,7 @@
         <a href="index.html" class="nav-link">Home</a>
         <a href="projects.html" class="nav-link">Projects</a>
         <a href="story.html" class="nav-link active">Story & Life</a>
+        <a href="education.html" class="nav-link">Education & Timeline</a>
     </nav>
 
     <div class="container">
@@ -289,11 +247,6 @@
                 And in that world...<br>
                 I turn my dreams into reality...
             </div>
-        </div>
-
-        <div class="story-block">
-            <h3><i class="fa-solid fa-location-dot"></i> Origin</h3>
-            <p>I was born in a middle class family in Bangladesh. I stayed for almost 9 years in Rajbari, Bangladesh and completed my play, nursery and KG class education there. Later because of the transfer of my father's occupation as he is an service holder we moved to Noapara, Jashore, Bangladesh. There I studied from class 1-3. And again because of my father's occupation we moved to Chuadanga, Bangladesh. And there I studied from class 4-10.</p>
         </div>
 
         <div class="story-block">
@@ -331,48 +284,6 @@
             <p>Gaming was more than just a way to pass time for me—it was a place where I found peace, laughter, and friendships I still remember. Some of the people I met encouraged my work, appreciated what I created, and guided me whenever I needed it.</p>
             <p style="margin-top: 10px;">As life moved forward, I eventually had to leave gaming behind and focus on other things. But I still carry those moments with me—the late nights, the conversations, the friendships, and the memories that made that chapter special.</p>
             <p style="margin-top: 10px; font-style: italic; color: #e0e0e0;">I may have left the game, but I never left the memories.</p>
-        </div>
-
-        <!-- Education & Journey Timeline -->
-        <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> EDUCATION & TIMELINE</div>
-        
-        <div class="story-block" style="margin-bottom: 25px;">
-            <p><strong>Still learning both in real and virtual life. Building my dreams one by one.</strong></p>
-            <p style="margin-top: 6px;">Currently in class 10 — Science group.</p>
-            <p>Focus: Software Engineer and AI Engineer</p>
-            <p>Journey: Started learning code from 2021 and from then on I'm continuing it beside my studies.</p>
-        </div>
-
-        <div class="timeline">
-            <div class="timeline-item">
-                <div class="timeline-date">1. 2021 — THE BEGINNING</div>
-                <div class="timeline-head">First Steps in Coding</div>
-                <div class="timeline-desc">Kicked off my programming journey purely through self-study, starting out with Python. With no instructors or traditional classes, I relied entirely on personal curiosity and online resources.</div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">2. 2022–23 — PRACTICAL PROJECTS</div>
-                <div class="timeline-head">Crafting Live Software</div>
-                <div class="timeline-desc">Dove straight into JavaScript and Discord bot creation. Launched my very first functional projects—deploying custom bots that active online communities actually used.</div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">3. 2024 — EXPANDING HORIZONS</div>
-                <div class="timeline-head">Game & Software Development</div>
-                <div class="timeline-desc">Dabbled in game development alongside general software projects, building interactive experiences while continually leveling up my coding skills.</div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">4. PRESENT — CURRENT FOCUS</div>
-                <div class="timeline-head">Class 10 (Science) · Developer · Builder</div>
-                <div class="timeline-desc">Currently in Class 10 (Science stream) preparing for the SSC exams while actively shipping software. Recently built my own AI model/project, while expanding into full-stack web development, system-level programming in C++/C#, and Minecraft server architecture alongside my studies.</div>
-            </div>
-
-            <div class="timeline-item">
-                <div class="timeline-date">5. FUTURE GOAL — CAREER AMBITION</div>
-                <div class="timeline-head">Aspiring Software Engineer (Where I'm Headed)</div>
-                <div class="timeline-desc">Working toward a full-time career in software engineering—concentrating on full-stack web architecture, system design, and building impactful software tools. Every build I launch today brings me one step closer.</div>
-            </div>
         </div>
 
     </div>
