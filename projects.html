@@ -120,23 +120,24 @@
         .navbar {
             display: flex;
             justify-content: center;
-            gap: 20px;
-            padding: 20px;
+            gap: 15px;
+            padding: 18px;
             position: sticky;
             top: 0;
             z-index: 50;
-            background: rgba(5, 5, 5, 0.7);
+            background: rgba(5, 5, 5, 0.75);
             backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--card-border);
+            flex-wrap: wrap;
         }
 
         .nav-link {
             color: var(--text-sub);
             text-decoration: none;
-            font-size: 0.95rem;
+            font-size: 0.9rem;
             font-weight: 600;
             letter-spacing: 1px;
-            padding: 8px 16px;
+            padding: 7px 15px;
             border-radius: 20px;
             transition: 0.3s;
             border: 1px solid transparent;
@@ -173,7 +174,6 @@
             font-size: 0.95rem;
         }
 
-        /* Project Cards */
         .card {
             background: var(--card-bg);
             border: 1px solid var(--card-border);
@@ -224,7 +224,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* Modal Popups */
+        /* Modal Overlay Popups */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -329,6 +329,7 @@
         <a href="index.html" class="nav-link">Home</a>
         <a href="projects.html" class="nav-link active">Projects</a>
         <a href="story.html" class="nav-link">Story & Life</a>
+        <a href="education.html" class="nav-link">Education & Timeline</a>
     </nav>
 
     <div class="container">
