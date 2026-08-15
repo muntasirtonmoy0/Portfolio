@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Muntasir Shahriar (Tonmoy) — Portfolio</title>
-    <!-- FontAwesome & Google Fonts -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
     
@@ -47,7 +46,6 @@
             pointer-events: none;
         }
 
-        /* Entry Screen */
         #entry-screen {
             position: fixed;
             inset: 0;
@@ -93,7 +91,6 @@
             transform: scale(1.05);
         }
 
-        /* White Interactive Cat */
         #cat-companion {
             position: fixed;
             width: 42px;
@@ -163,43 +160,10 @@
         @keyframes catBreathe { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
         @keyframes tailWag { 0% { transform: rotate(-20deg); } 100% { transform: rotate(25deg); } }
 
-        /* Navigation Bar */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 18px;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(5, 5, 5, 0.75);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--card-border);
-            flex-wrap: wrap;
-        }
-
-        .nav-link {
-            color: var(--text-sub);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            padding: 7px 15px;
-            border-radius: 20px;
-            transition: 0.3s;
-            border: 1px solid transparent;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: #fff;
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
         .container {
             max-width: 850px;
             margin: 0 auto;
-            padding: 30px 20px 100px 20px;
+            padding: 40px 20px 100px 20px;
             position: relative;
             z-index: 1;
         }
@@ -414,13 +378,11 @@
 
     <canvas id="canvas"></canvas>
 
-    <!-- Entry Portal Overlay -->
     <div id="entry-screen">
         <div class="entry-quote">“MORTALS FADE, BUT THEIR DREAMS NEVER DIE.”</div>
         <button class="click-btn" onclick="enterSite()">CLICK TO ENTER</button>
     </div>
 
-    <!-- White Interactive Cat Companion -->
     <div id="cat-companion">
         <div class="cat-ear left"></div>
         <div class="cat-ear right"></div>
@@ -432,15 +394,6 @@
         </div>
     </div>
 
-    <!-- Navigation Header -->
-    <nav class="navbar">
-        <a href="index.html" class="nav-link active">Home</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        <a href="story.html" class="nav-link">Story & Life</a>
-        <a href="education.html" class="nav-link">Education & Timeline</a>
-    </nav>
-
-    <!-- Background Music -->
     <audio id="bg-music" loop src="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=lofi-study-112191.mp3"></audio>
     <div class="audio-pill" onclick="toggleAudio()">
         <i id="audio-icon" class="fa-solid fa-compact-disc"></i>
@@ -449,7 +402,6 @@
 
     <div class="container">
 
-        <!-- Top Bio Profile -->
         <div class="profile-card">
             <div class="avatar">
                 <img src="avatar_mt.png" alt="Muntasir Tonmoy">
@@ -478,7 +430,6 @@
             </div>
         </div>
 
-        <!-- Skills Section -->
         <div class="section-title"><i class="fa-solid fa-code"></i> SKILLS & TECH STACK</div>
         <div class="card" style="cursor: default;">
             <div class="card-title" style="margin-bottom: 10px;">Programming Languages</div>
@@ -502,7 +453,6 @@
             </div>
         </div>
 
-        <!-- Multi-page Link: Projects -->
         <div class="section-title"><i class="fa-solid fa-rocket"></i> FEATURED PROJECTS</div>
         <a href="projects.html" class="card interactive">
             <div class="card-header">
@@ -514,7 +464,6 @@
             </div>
         </a>
 
-        <!-- Multi-page Link: Story & Life -->
         <div class="section-title"><i class="fa-solid fa-book-open"></i> THE STORY & THE JOURNEY</div>
         <a href="story.html" class="card interactive">
             <div class="card-header">
@@ -526,7 +475,6 @@
             </div>
         </a>
 
-        <!-- Multi-page Link: Education & Timeline -->
         <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> EDUCATION & TIMELINE</div>
         <a href="education.html" class="card interactive">
             <div class="card-header">
@@ -541,7 +489,6 @@
     </div>
 
     <script>
-        // Particles
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -575,7 +522,6 @@
         }
         animate();
 
-        // White Cat Follower
         const cat = document.getElementById('cat-companion');
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
         let catX = mouseX, catY = mouseY;
@@ -589,7 +535,6 @@
         }
         moveCat();
 
-        // Audio & Entry Portal
         const music = document.getElementById('bg-music');
         let isPlaying = false;
 
