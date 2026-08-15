@@ -46,7 +46,6 @@
             pointer-events: none;
         }
 
-        /* White Interactive Cat */
         #cat-companion {
             position: fixed;
             width: 42px;
@@ -116,45 +115,33 @@
         @keyframes catBreathe { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
         @keyframes tailWag { 0% { transform: rotate(-20deg); } 100% { transform: rotate(25deg); } }
 
-        /* Navigation */
-        .navbar {
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-            padding: 18px;
-            position: sticky;
-            top: 0;
-            z-index: 50;
-            background: rgba(5, 5, 5, 0.75);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid var(--card-border);
-            flex-wrap: wrap;
-        }
-
-        .nav-link {
-            color: var(--text-sub);
-            text-decoration: none;
-            font-size: 0.9rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            padding: 7px 15px;
-            border-radius: 20px;
-            transition: 0.3s;
-            border: 1px solid transparent;
-        }
-
-        .nav-link:hover, .nav-link.active {
-            color: #fff;
-            border-color: var(--primary);
-            background: rgba(255, 255, 255, 0.05);
-        }
-
         .container {
             max-width: 850px;
             margin: 0 auto;
             padding: 40px 20px 100px 20px;
             position: relative;
             z-index: 1;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.9rem;
+            padding: 8px 16px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--card-border);
+            margin-bottom: 25px;
+            transition: 0.3s;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.1);
         }
 
         .section-title {
@@ -211,7 +198,6 @@
 
     <canvas id="canvas"></canvas>
 
-    <!-- White Interactive Cat Companion -->
     <div id="cat-companion">
         <div class="cat-ear left"></div>
         <div class="cat-ear right"></div>
@@ -223,17 +209,9 @@
         </div>
     </div>
 
-    <!-- Navigation Header -->
-    <nav class="navbar">
-        <a href="index.html" class="nav-link">Home</a>
-        <a href="projects.html" class="nav-link">Projects</a>
-        <a href="story.html" class="nav-link active">Story & Life</a>
-        <a href="education.html" class="nav-link">Education & Timeline</a>
-    </nav>
-
     <div class="container">
+        <a href="index.html" class="back-btn"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
 
-        <!-- The Story Section -->
         <div class="section-title"><i class="fa-solid fa-book"></i> THE STORY</div>
         
         <div class="story-block">
@@ -264,7 +242,6 @@
             <p>Yet, somehow, I remain. I keep turning ideas into something real, even when the results don't go as planned. Perhaps I’m driven by a hope I can’t quite explain—the feeling that there’s still something worth creating ahead of me. So I continue, without needing recognition, building at my own pace and following a path only I can see.</p>
         </div>
 
-        <!-- The Life Section -->
         <div class="section-title"><i class="fa-solid fa-heart"></i> THE LIFE — WHO I AM</div>
         
         <div class="story-block">
@@ -289,7 +266,6 @@
     </div>
 
     <script>
-        // Particles
         const canvas = document.getElementById('canvas');
         const ctx = canvas.getContext('2d');
         let particles = [];
@@ -323,7 +299,6 @@
         }
         animate();
 
-        // White Cat Tracking
         const cat = document.getElementById('cat-companion');
         let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
         let catX = mouseX, catY = mouseY;
