@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Story & Journey — Muntasir Shahriar</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #050505;
+            --card-bg: rgba(20, 20, 20, 0.75);
+            --card-border: rgba(80, 80, 80, 0.4);
+            --primary: #cccccc;
+            --primary-glow: rgba(200, 200, 200, 0.15);
+            --accent: #888888;
+            --text-main: #f0f0f0;
+            --text-sub: #9e9e9e;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Outfit', sans-serif;
+            min-height: 100vh;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        #canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        /* White Interactive Cat */
+        #cat-companion {
+            position: fixed;
+            width: 42px;
+            height: 42px;
+            pointer-events: none;
+            z-index: 999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease-out;
+        }
+
+        .cat-body {
+            width: 100%;
+            height: 100%;
+            background: #ffffff;
+            border-radius: 50%;
+            position: relative;
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+            animation: catBreathe 2s ease-in-out infinite alternate;
+        }
+
+        .cat-ear {
+            position: absolute;
+            top: -6px;
+            width: 0;
+            height: 0;
+            border-left: 6px solid transparent;
+            border-right: 6px solid transparent;
+            border-bottom: 12px solid #ffffff;
+        }
+        .cat-ear.left { left: 4px; transform: rotate(-15deg); }
+        .cat-ear.right { right: 4px; transform: rotate(15deg); }
+
+        .cat-eye {
+            position: absolute;
+            top: 14px;
+            width: 5px;
+            height: 5px;
+            background: #111;
+            border-radius: 50%;
+        }
+        .cat-eye.left { left: 10px; }
+        .cat-eye.right { right: 10px; }
+
+        .cat-nose {
+            position: absolute;
+            top: 21px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            height: 3px;
+            background: #ffb6c1;
+            border-radius: 50%;
+        }
+
+        .cat-tail {
+            position: absolute;
+            bottom: 2px;
+            right: -10px;
+            width: 16px;
+            height: 6px;
+            background: #ffffff;
+            border-radius: 10px;
+            transform-origin: left center;
+            animation: tailWag 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes catBreathe { 0% { transform: scale(1); } 100% { transform: scale(1.06); } }
+        @keyframes tailWag { 0% { transform: rotate(-20deg); } 100% { transform: rotate(25deg); } }
+
+        /* Navigation */
+        .navbar {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            background: rgba(5, 5, 5, 0.7);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--card-border);
+        }
+
+        .nav-link {
+            color: var(--text-sub);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            color: #fff;
+            border-color: var(--primary);
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 40px 20px 100px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .section-title {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            margin: 35px 0 15px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--primary);
+        }
+
+        .section-title::after {
+            content: '';
+            flex: 1;
+            height: 1px;
+            background: linear-gradient(90deg, var(--card-border), transparent);
+        }
+
+        .story-block {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            backdrop-filter: blur(10px);
+            border-radius: 18px;
+            padding: 26px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+            color: var(--text-sub);
+            font-size: 0.95rem;
+        }
+
+        .story-block h3 {
+            font-family: 'Space Grotesk', sans-serif;
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .introvert-quote {
+            font-style: italic;
+            font-size: 1.05rem;
+            color: #e0e0e0;
+            border-left: 3px solid var(--primary);
+            padding-left: 15px;
+            margin: 15px 0;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 20px;
+            border-left: 2px solid var(--card-border);
+            margin-top: 25px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+            padding-left: 15px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -27px;
+            top: 4px;
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: var(--primary);
+            box-shadow: 0 0 10px rgba(255,255,255,0.2);
+        }
+
+        .timeline-date {
+            font-size: 0.8rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
+
+        .timeline-head {
+            font-size: 1.05rem;
+            color: #fff;
+            margin: 2px 0 6px 0;
+        }
+
+        .timeline-desc {
+            font-size: 0.9rem;
+            color: var(--text-sub);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="canvas"></canvas>
+
+    <!-- White Interactive Cat Companion -->
+    <div id="cat-companion">
+        <div class="cat-ear left"></div>
+        <div class="cat-ear right"></div>
+        <div class="cat-body">
+            <div class="cat-eye left"></div>
+            <div class="cat-eye right"></div>
+            <div class="cat-nose"></div>
+            <div class="cat-tail"></div>
+        </div>
+    </div>
+
+    <!-- Navigation Header -->
+    <nav class="navbar">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="projects.html" class="nav-link">Projects</a>
+        <a href="story.html" class="nav-link active">Story & Life</a>
+    </nav>
+
+    <div class="container">
+
+        <!-- The Story Section -->
+        <div class="section-title"><i class="fa-solid fa-book"></i> THE STORY</div>
+        
+        <div class="story-block">
+            <div class="introvert-quote">
+                I am an introvert.<br>
+                I don't talk much to anyone.<br>
+                Making friends... forming companions...<br>
+                It rarely interests me.<br>
+                I exist mostly in my own world.<br>
+                A world built of logic, code, and quiet thoughts.<br>
+                And in that world...<br>
+                I turn my dreams into reality...
+            </div>
+        </div>
+
+        <div class="story-block">
+            <h3><i class="fa-solid fa-location-dot"></i> Origin</h3>
+            <p>I was born in a middle class family in Bangladesh. I stayed for almost 9 years in Rajbari, Bangladesh and completed my play, nursery and KG class education there. Later because of the transfer of my father's occupation as he is an service holder we moved to Noapara, Jashore, Bangladesh. There I studied from class 1-3. And again because of my father's occupation we moved to Chuadanga, Bangladesh. And there I studied from class 4-10.</p>
+        </div>
+
+        <div class="story-block">
+            <h3><i class="fa-solid fa-bolt"></i> The Spark (2021 — Self-taught)</h3>
+            <p>In the time of covid-19, during lockdowns, I had pretty much time to spend here and there. Then I saw others building things online and something clicked. I wanted to understand it. All of it. No matter how hard. That's just who I am — if something pulls my interest, I chase it without looking back. Some of my online friend also fueled my thoughts by giving me instructions. Python was first. Then bots. Then everything else.</p>
+        </div>
+
+        <div class="story-block">
+            <h3><i class="fa-solid fa-fire"></i> The Reality (Projects · Failures · Dust)</h3>
+            <p>Most of my projects have failed. I gave them my time, ideas, and everything I had, only to watch them quietly fall apart. There were times I wanted to stop—to step away and let everything fade into silence. But somewhere inside, I kept finding a reason to continue. Failure may have changed my path, but it never ended my journey.</p>
+        </div>
+
+        <div class="story-block">
+            <h3><i class="fa-solid fa-infinity"></i> Never Stopped (Still Here Somehow)</h3>
+            <p>Yet, somehow, I remain. I keep turning ideas into something real, even when the results don't go as planned. Perhaps I’m driven by a hope I can’t quite explain—the feeling that there’s still something worth creating ahead of me. So I continue, without needing recognition, building at my own pace and following a path only I can see.</p>
+        </div>
+
+        <!-- The Life Section -->
+        <div class="section-title"><i class="fa-solid fa-heart"></i> THE LIFE — WHO I AM</div>
+        
+        <div class="story-block">
+            <p>Honestly? My life hasn't always been peaceful.</p>
+            <p style="margin-top: 10px;">There are dreams—things I want more than I can put into words. Sometimes they feel impossibly far away, buried beneath difficulties, setbacks, and moments when everything seems to go against me.</p>
+            <p style="margin-top: 10px;">There were times when I questioned whether I was capable of reaching them. But even then, something inside me kept whispering:</p>
+            <blockquote style="font-style: italic; color: #fff; margin: 12px 0 12px 15px; border-left: 2px solid var(--accent); padding-left: 10px;">
+                “Don’t stop. Don’t give up. Something good is being built for the future.”
+            </blockquote>
+            <p>So I keep going. I remind myself that great things take time, patience, and dedication. Maybe I haven't reached where I want to be yet—but I believe I can.</p>
+            <p style="margin-top: 10px;">Every day, I keep building, learning, and moving forward.</p>
+        </div>
+
+        <div class="story-block">
+            <h3><i class="fa-solid fa-gamepad"></i> Gaming — Things That Keep Me Going</h3>
+            <div style="font-size: 0.85rem; color: var(--accent); margin-bottom: 10px;">Action · Open World · Survival · RPG</div>
+            <p>Gaming was more than just a way to pass time for me—it was a place where I found peace, laughter, and friendships I still remember. Some of the people I met encouraged my work, appreciated what I created, and guided me whenever I needed it.</p>
+            <p style="margin-top: 10px;">As life moved forward, I eventually had to leave gaming behind and focus on other things. But I still carry those moments with me—the late nights, the conversations, the friendships, and the memories that made that chapter special.</p>
+            <p style="margin-top: 10px; font-style: italic; color: #e0e0e0;">I may have left the game, but I never left the memories.</p>
+        </div>
+
+        <!-- Education & Journey Timeline -->
+        <div class="section-title"><i class="fa-solid fa-graduation-cap"></i> EDUCATION & TIMELINE</div>
+        
+        <div class="story-block" style="margin-bottom: 25px;">
+            <p><strong>Still learning both in real and virtual life. Building my dreams one by one.</strong></p>
+            <p style="margin-top: 6px;">Currently in class 10 — Science group.</p>
+            <p>Focus: Software Engineer and AI Engineer</p>
+            <p>Journey: Started learning code from 2021 and from then on I'm continuing it beside my studies.</p>
+        </div>
+
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">1. 2021 — THE BEGINNING</div>
+                <div class="timeline-head">First Steps in Coding</div>
+                <div class="timeline-desc">Kicked off my programming journey purely through self-study, starting out with Python. With no instructors or traditional classes, I relied entirely on personal curiosity and online resources.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">2. 2022–23 — PRACTICAL PROJECTS</div>
+                <div class="timeline-head">Crafting Live Software</div>
+                <div class="timeline-desc">Dove straight into JavaScript and Discord bot creation. Launched my very first functional projects—deploying custom bots that active online communities actually used.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">3. 2024 — EXPANDING HORIZONS</div>
+                <div class="timeline-head">Game & Software Development</div>
+                <div class="timeline-desc">Dabbled in game development alongside general software projects, building interactive experiences while continually leveling up my coding skills.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">4. PRESENT — CURRENT FOCUS</div>
+                <div class="timeline-head">Class 10 (Science) · Developer · Builder</div>
+                <div class="timeline-desc">Currently in Class 10 (Science stream) preparing for the SSC exams while actively shipping software. Recently built my own AI model/project, while expanding into full-stack web development, system-level programming in C++/C#, and Minecraft server architecture alongside my studies.</div>
+            </div>
+
+            <div class="timeline-item">
+                <div class="timeline-date">5. FUTURE GOAL — CAREER AMBITION</div>
+                <div class="timeline-head">Aspiring Software Engineer (Where I'm Headed)</div>
+                <div class="timeline-desc">Working toward a full-time career in software engineering—concentrating on full-stack web architecture, system design, and building impactful software tools. Every build I launch today brings me one step closer.</div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // Particles
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        window.addEventListener('resize', resize);
+        resize();
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = (Math.random() - 0.5) * 0.3;
+                this.speedY = (Math.random() - 0.5) * 0.3;
+                this.opacity = Math.random() * 0.4 + 0.1;
+            }
+            update() {
+                this.x += this.speedX; this.y += this.speedY;
+                if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
+                if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(180, 180, 180, ${this.opacity})`;
+                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+            }
+        }
+        for (let i = 0; i < 60; i++) particles.push(new Particle());
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        // White Cat Tracking
+        const cat = document.getElementById('cat-companion');
+        let mouseX = window.innerWidth / 2, mouseY = window.innerHeight / 2;
+        let catX = mouseX, catY = mouseY;
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; mouseY = e.clientY; });
+        window.addEventListener('touchmove', (e) => { if (e.touches.length > 0) { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; } }, { passive: true });
+        window.addEventListener('touchstart', (e) => { if (e.touches.length > 0) { mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY; } }, { passive: true });
+        function moveCat() {
+            catX += (mouseX - catX) * 0.08; catY += (mouseY - catY) * 0.08;
+            cat.style.left = catX + 'px'; cat.style.top = catY + 'px';
+            requestAnimationFrame(moveCat);
+        }
+        moveCat();
+    </script>
+</body>
+</html>
